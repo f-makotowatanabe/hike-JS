@@ -1,2 +1,3 @@
-Plusoft HIKE
-Adiciona novas funcionalidades para plataforma de chamados Hike - Plusoft
+# HIKE SCRIPT
+
+Script para novas funcionalidades da plataforma de chamados Plusoft HIKE
