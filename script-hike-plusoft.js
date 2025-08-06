@@ -3,10 +3,11 @@
 // @description  Melhorias na interface do HIKE
 // @version      1.0
 // @author       MakotoWatanabe
-// @icon         https://hikeplatform.com/wp-content/themes/area-structure-1/assets/images/favicon.png
 // @include      https://plusoft-itsm.inpaas.com/forms-v2/bpmruntime.userflows.forms.bpm_workflow_*
 // @grant        none
 // @run-at       document-idle
+// @downloadURL  https://raw.githubusercontent.com/f-makotowatanabe/hike-JS/refs/heads/main/script-hike-plusoft.js
+// @updateURL    https://raw.githubusercontent.com/f-makotowatanabe/hike-JS/refs/heads/main/script-hike-plusoft.js
 // ==/UserScript==
 
 
