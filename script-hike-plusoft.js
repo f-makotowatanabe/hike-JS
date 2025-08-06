@@ -9,35 +9,40 @@
 // @run-at       document-idle
 // ==/UserScript==
 
+
+/*UPDATE*/
+
+
 (function() {
     'use strict';
     const $ = window.jQuery; // Assign jQuery to the $ variable
 
 
-    // --------------------------------
-    // FUNCAO DE VERIFICAR O CHAMADO
+    
+    /* FUNCAO DE VERIFICAR O CHAMADO
+    // ------------------------------------------------- */
     function verificaChamado() {
 
-        // Verifica qual area pertence o chamado
-        // --------------------------------
+        /* Verifica qual area pertence o chamado
+        // -------------------------------------------- */
         const area = document.querySelector('h5').textContent;
 
-        // Local onde renderiza os alerts
-        // --------------------------------
+        /* Local onde renderiza os alerts
+        // -------------------------------------------- */
         const RenderizaHeader = document.querySelector('.page-actions.pull-right');
         const RenderizaFlutuante = document.querySelector('.page-text-header');
 
 
 
-        // Adiciona os botões âncora
-        // --------------------------------
+        /* Adiciona os botões âncora
+        // -------------------------------------------- */
         let botaoAncora = '<div class="JSbotaoAncora"><a href="#mainForm"><i class="fa fa-chevron-circle-up"></i></a><a href="#editor"><i class="fa fa-comment"></i></a></div>';
         RenderizaFlutuante.insertAdjacentHTML("afterbegin", botaoAncora);
 
 
 
-        // Adiciona o titulo do chamado no topo
-        // --------------------------------
+        /* Adiciona o titulo do chamado no topo
+        // -------------------------------------------- */
         const inputPrefixo = document.querySelector('[ng-model="vm.entity.data.prefix_alias"]').value;
         const inputTitulo = document.getElementById('field-title').value;
 
@@ -47,15 +52,16 @@
 
 
 
-        // Verifica o campo data no chamado
-        // --------------------------------
+        /* Verifica o campo data no chamado
+        // -------------------------------------------- */
         const inputData = document.getElementById('field-duedate').value;
 
         let hoje = new Date();
         let hoje_formatado = hoje.toLocaleDateString('pt-BR');
 
         function converteParaIso(dataBrComHora) {
-            // separa só a parte da data
+            /* separa só a parte da data
+            // -------------------------------------------- */
             const dataBr = dataBrComHora.split(' ')[0];
             const [dia, mes, ano] = dataBr.split('/');
             return `${ano}-${mes}-${dia}`;
@@ -83,20 +89,23 @@
 
 
 
-        // Verifica se o campo hora no chamado está preenchido
-        // --------------------------------
+        /* Verifica se o campo hora no chamado está preenchido
+        // -------------------------------------------- */
         let inputHoraAlocada = '';
 
         function verificaArea() {
             if (area == "Criação") {
-                // Capta valor do input CRIA
+                /* Capta valor do input CRIA
+                // -------------------------------------------- */
                 inputHoraAlocada = document.getElementById("field-field_currency_28ef7c")?.value || '';
 
-                // Arruma collapse quebrado CRIA
+                /* Arruma collapse quebrado CRIA
+                // -------------------------------------------- */
                 const ArrumaItensRelacionados = document.querySelector('a[data-target="#collapse-section1743106615271"]').setAttribute('data-target', '#collapse-section-1743106615271');
                 const ArrumaItensVinculados = document.querySelector('a[data-target="#collapse-section1743106628590"]').setAttribute('data-target', '#collapse-section-1743106628590');
 
-                // Fecha collapse Itens vinculados
+                /* Fecha collapse Itens vinculados
+                // -------------------------------------------- */
                 const ItensVinculado = document.querySelectorAll('a[data-target="#collapse-section-1743106628590"]');
                 for (var cri = 0; cri < ItensVinculado.length; cri++) {
                     ItensVinculado[cri].click();
@@ -104,14 +113,17 @@
                 };
             }
             else if (area == "Campanhas") {
-                // Capta valor do input CAMP
+                /* Capta valor do input CAMP
+                // -------------------------------------------- */
                 inputHoraAlocada = document.getElementById("field-field_currency_5e8d28")?.value || '';
 
-                // Arruma collapse quebrado CAMP
+                /* Arruma collapse quebrado CAMP
+                // -------------------------------------------- */
                 const ArrumaItensRelacionados = document.querySelector('a[data-target="#collapse-section1741204439162"]').setAttribute('data-target', '#collapse-section-1741204439162');
                 const ArrumaItensVinculados = document.querySelector('a[data-target="#collapse-section1743761535133"]').setAttribute('data-target', '#collapse-section-1743761535133');
 
-                // Fecha collapse Itens vinculados
+                /* Fecha collapse Itens vinculados
+                // -------------------------------------------- */
                 const ItensVinculado = document.querySelectorAll('a[data-target="#collapse-section-1743761535133"]');
                 for (var camp = 0; camp < ItensVinculado.length; camp++) {
                     ItensVinculado[camp].click();
@@ -134,8 +146,9 @@
     } setTimeout(verificaChamado, 5000);
 
 
-    // --------------------------------
-    //  SCROLL SUAVE
+    /*  SCROLL SUAVE
+    // ------------------------------------------------- */
+    
     document.querySelector('a[href^="#"]').addEventListener('click', function(e) {
         e.preventDefault();
         document.querySelector(this.getAttribute('href')).scrollIntoView({
