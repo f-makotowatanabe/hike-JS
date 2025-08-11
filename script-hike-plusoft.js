@@ -12,7 +12,7 @@
 // ==/UserScript==
 
 
-/*UPDATE*/
+/*UPDATE 11/08 */
 
 
 (function() {
