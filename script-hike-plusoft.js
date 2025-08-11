@@ -12,7 +12,7 @@
 // ==/UserScript==
 
 
-/*UPDATE 11/08 */
+/*UPDATE 11/08*/
 
 
 (function() {
@@ -38,8 +38,8 @@
 
         /* Adiciona status do chamado no título
         // -------------------------------------------- */
-        const textobotao = document.querySelector('[ng-model="vm.entity.data._bpm_step_title"]').value;
-        let statusChamado = '<span class="label-status" title="'+textobotao+'">'+textobotao+'</span>';
+        const inputStatus = document.querySelector('[ng-model="vm.entity.data._bpm_step_title"]').value;
+        let statusChamado = '<span class="label-status" title="'+inputStatus+'">'+inputStatus+'</span>';
         document.querySelector('.page-header-h1').insertAdjacentHTML("beforeend", statusChamado);
 
 
@@ -95,7 +95,12 @@
             }
         }
 
-        verificaData();
+        function verificaStatus() {
+            if (inputStatus != "Concluído" && inputStatus != "Cancelado") {
+                verificaData();
+            }
+        }
+        verificaStatus();
 
 
 
