@@ -20,7 +20,7 @@
     const $ = window.jQuery; // Assign jQuery to the $ variable
 
 
-    
+
     /* FUNCAO DE VERIFICAR O CHAMADO
     // ------------------------------------------------- */
     function verificaChamado() {
@@ -33,6 +33,14 @@
         // -------------------------------------------- */
         const RenderizaHeader = document.querySelector('.page-actions.pull-right');
         const RenderizaFlutuante = document.querySelector('.page-text-header');
+
+
+
+        /* Adiciona status do chamado no título
+        // -------------------------------------------- */
+        const textobotao = document.querySelector('[ng-model="vm.entity.data._bpm_step_title"]').value;
+        let statusChamado = '<span class="label-status" title="'+textobotao+'">'+textobotao+'</span>';
+        document.querySelector('.page-header-h1').insertAdjacentHTML("beforeend", statusChamado);
 
 
 
@@ -144,13 +152,12 @@
         verificaHoraAlocada();
 
 
-
     } setTimeout(verificaChamado, 5000);
 
 
     /*  SCROLL SUAVE
     // ------------------------------------------------- */
-    
+
     document.querySelector('a[href^="#"]').addEventListener('click', function(e) {
         e.preventDefault();
         document.querySelector(this.getAttribute('href')).scrollIntoView({
