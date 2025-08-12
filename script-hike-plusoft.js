@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         HIKE - Iframe pagina Chamado
+// @name         HIKE - Página Chamado
 // @description  Melhorias na interface do HIKE
 // @version      1.0
 // @author       MakotoWatanabe
@@ -12,7 +12,7 @@
 // ==/UserScript==
 
 
-/*UPDATE 11/08*/
+/*UPDATE 12/08*/
 
 
 (function() {
@@ -44,6 +44,7 @@
 
 
 
+
         /* Adiciona os botões âncora
         // -------------------------------------------- */
         let botaoAncora = '<div class="JSbotaoAncora"><a href="#mainForm"><i class="fa fa-chevron-circle-up"></i></a><a href="#editor"><i class="fa fa-comment"></i></a></div>';
@@ -58,7 +59,7 @@
 
         let tituloDoChamado = '<div id="JStituloDoChamado">['+inputPrefixo+'] '+inputTitulo+'</div>';
         RenderizaHeader.insertAdjacentHTML("afterend", tituloDoChamado);
-        //const PrefixoDoChamado = document.querySelector('[class="h1 no-select page-header-h1"]').textContent = inputPrefixo;
+
 
 
 
@@ -82,15 +83,15 @@
 
         function verificaData() {
             if (dataChamado == dataHoje) {
-                let novoElemento = '<div class="JSverificaStatus amarelo">'+inputData+' - CHAMADO VENCE HOJE</div>';
+                let novoElemento = '<div class="JSverificaStatus amarelo">'+inputData+' - VENCE HOJE</div>';
                 RenderizaFlutuante.insertAdjacentHTML("beforeend", novoElemento);
 
             } else if (dataChamado < dataHoje) {
-                let novoElemento = '<div class="JSverificaStatus vermelho">'+inputData+' - CHAMADO ATRASADO</div>';
+                let novoElemento = '<div class="JSverificaStatus vermelho">'+inputData+' - ATRASADO</div>';
                 RenderizaFlutuante.insertAdjacentHTML("beforeend", novoElemento);
 
             } else {
-                let novoElemento = '<div class="JSverificaStatus verde">'+inputData+' - CHAMADO NO PRAZO</div>';
+                let novoElemento = '<div class="JSverificaStatus verde">'+inputData+' - NO PRAZO</div>';
                 RenderizaFlutuante.insertAdjacentHTML("beforeend", novoElemento);
             }
         }
