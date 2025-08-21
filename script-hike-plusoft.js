@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HIKE - Página Chamado
 // @description  Melhorias na interface do HIKE
-// @version      1.0
+// @version      2.0
 // @author       MakotoWatanabe
 // @include      https://plusoft-itsm.inpaas.com/forms-v2/bpmruntime.userflows.forms.bpm_workflow_*
 // @icon         https://hikeplatform.com/wp-content/themes/area-structure-1/assets/images/favicon.png
@@ -11,8 +11,7 @@
 // @run-at       document-idle
 // ==/UserScript==
 
-
-/*UPDATE 12/08*/
+/*LAST UPDATE 21/08*/
 
 
 (function() {
@@ -20,14 +19,22 @@
     const $ = window.jQuery; // Assign jQuery to the $ variable
 
 
-
     /* FUNCAO DE VERIFICAR O CHAMADO
     // ------------------------------------------------- */
     function verificaChamado() {
 
-        /* Verifica qual area pertence o chamado
+        /* Busca as informações no chamado
         // -------------------------------------------- */
-        const area = document.querySelector('h5').textContent;
+        let NomeDaArea = document.querySelector('h5').textContent;
+        NomeDaArea = NomeDaArea.replace(/[-\s]/g, "");
+        const inputPrefixo = document.querySelector('[ng-model="vm.entity.data.prefix_alias"]')?.value || '';
+        const inputTitulo = document.getElementById('field-title')?.value || '';
+        const inputStatus = document.querySelector('[ng-model="vm.entity.data._bpm_step_title"]');
+        const inputData = document.getElementById('field-duedate');
+        const inputHoraAlocadaCria = document.getElementById("field-field_currency_28ef7c");
+        const inputHoraAlocadaCamp = document.getElementById("field-field_currency_5e8d28");
+        const inputPrefixoPai = document.querySelector('[ng-model="vm.entity.data.bpm_exec.bpm_exec_parent.prefix_alias"]');
+
 
         /* Local onde renderiza os alerts
         // -------------------------------------------- */
@@ -36,126 +43,144 @@
 
 
 
-        /* Adiciona status do chamado no título
-        // -------------------------------------------- */
-        const inputStatus = document.querySelector('[ng-model="vm.entity.data._bpm_step_title"]').value;
-        let statusChamado = '<span class="label-status" title="'+inputStatus+'">'+inputStatus+'</span>';
-        document.querySelector('.page-header-h1').insertAdjacentHTML("beforeend", statusChamado);
-
-
-
 
         /* Adiciona os botões âncora
         // -------------------------------------------- */
-        let botaoAncora = '<div class="JSbotaoAncora"><a href="#mainForm"><i class="fa fa-chevron-circle-up"></i></a><a href="#editor"><i class="fa fa-comment"></i></a></div>';
+        const botaoAncora = '<div class="JSbotaoAncora"><a href="#mainForm"><i class="fa fa-chevron-circle-up"></i></a><a href="#editor"><i class="fa fa-comment"></i></a></div>';
         RenderizaFlutuante.insertAdjacentHTML("afterbegin", botaoAncora);
-
-
 
         /* Adiciona o titulo do chamado no topo
         // -------------------------------------------- */
-        const inputPrefixo = document.querySelector('[ng-model="vm.entity.data.prefix_alias"]').value;
-        const inputTitulo = document.getElementById('field-title').value;
-
-        let tituloDoChamado = '<div id="JStituloDoChamado">['+inputPrefixo+'] '+inputTitulo+'</div>';
+        const tituloDoChamado = '<div id="JStituloDoChamado">['+inputPrefixo+'] '+inputTitulo+'</div>';
         RenderizaHeader.insertAdjacentHTML("afterend", tituloDoChamado);
 
 
-
-
-        /* Verifica o campo data no chamado
+        /* Conversor de ISO
         // -------------------------------------------- */
-        const inputData = document.getElementById('field-duedate').value;
-
-        let hoje = new Date();
-        let hoje_formatado = hoje.toLocaleDateString('pt-BR');
-
         function converteParaIso(dataBrComHora) {
-            /* separa só a parte da data
-            // -------------------------------------------- */
             const dataBr = dataBrComHora.split(' ')[0];
             const [dia, mes, ano] = dataBr.split('/');
             return `${ano}-${mes}-${dia}`;
         }
 
-        const dataChamado = converteParaIso(inputData);
-        const dataHoje = converteParaIso(hoje_formatado);
 
-        function verificaData() {
-            if (dataChamado == dataHoje) {
-                let novoElemento = '<div class="JSverificaStatus amarelo">'+inputData+' - VENCE HOJE</div>';
-                RenderizaFlutuante.insertAdjacentHTML("beforeend", novoElemento);
+        /* Verifica data do chamado versu data atual
+        // -------------------------------------------- */
+        function verificaInputData() {
+            /* Formata data em string
+            // -------------------------------------------- */
+            const hoje = new Date();
+            const hoje_formatado = hoje.toLocaleDateString('pt-BR');
+            const dataHoje = converteParaIso(hoje_formatado);
+            const dataChamado = converteParaIso(inputData.value);
 
-            } else if (dataChamado < dataHoje) {
-                let novoElemento = '<div class="JSverificaStatus vermelho">'+inputData+' - ATRASADO</div>';
-                RenderizaFlutuante.insertAdjacentHTML("beforeend", novoElemento);
+            /* se existir input status no chamado
+            // -------------------------------------------- */
+            if (inputStatus) {
+                /* Se o status for diferente de concluido ou cancelado
+                // -------------------------------------------- */
+                 if (inputStatus.value != "Concluído" && inputStatus.value != "Cancelado") {
+                     if (dataChamado == dataHoje) {
+                         const novoElemento = '<div class="JSverificaStatus"><span class="label-status" title="'+inputStatus.value+'">'+inputStatus.value+'</span> <span class="label-status" title="amarelo">'+inputData.value+'</span></div>';
+                         RenderizaFlutuante.insertAdjacentHTML("beforeend", novoElemento);
 
-            } else {
-                let novoElemento = '<div class="JSverificaStatus verde">'+inputData+' - NO PRAZO</div>';
-                RenderizaFlutuante.insertAdjacentHTML("beforeend", novoElemento);
-            }
+                     } else if (dataChamado < dataHoje) {
+                         const novoElemento = '<div class="JSverificaStatus"><span class="label-status" title="'+inputStatus.value+'">'+inputStatus.value+'</span> <span class="label-status" title="vermelho">'+inputData.value+'</span></div>';
+                         RenderizaFlutuante.insertAdjacentHTML("beforeend", novoElemento);
+
+                     } else {
+                         const novoElemento = '<div class="JSverificaStatus"><span class="label-status" title="'+inputStatus.value+'">'+inputStatus.value+'</span> <span class="label-status" title="verde">'+inputData.value+'</span></div>';
+                         RenderizaFlutuante.insertAdjacentHTML("beforeend", novoElemento);
+                     }
+                 }
+                else {
+                    const novoElemento = '<div class="JSverificaStatus"><span class="label-status" title="'+inputStatus.value+'">'+inputStatus.value+'</span></div>';
+                    RenderizaFlutuante.insertAdjacentHTML("beforeend", novoElemento);
+                }
+            };
+
         }
-
-        function verificaStatus() {
-            if (inputStatus != "Concluído" && inputStatus != "Cancelado") {
-                verificaData();
-            }
-        }
-        verificaStatus();
-
-
 
         /* Verifica se o campo hora no chamado está preenchido
         // -------------------------------------------- */
-        let inputHoraAlocada = '';
+        let HoraAlocada = '';
+        function verificaHoraAlocada() {
+            /* SE hora alocada for vazio
+            // -------------------------------------------- */
+            if (HoraAlocada === '') {
+                //const popVerificaHoras = '<div class="JSverificaHora" role="alert">O campo Horas alocadas está vazio!</div>';
+                //document.querySelector('.form-horizontal').insertAdjacentHTML("beforeend", popVerificaHoras);
 
+
+                const containers = document.querySelector(".row.field-currency");
+
+                containers.forEach(container => {
+                    const wrapper = document.createElement("div");
+                    wrapper.classList.add("JSverificaHora");
+
+                    container.parentNode.insertBefore(wrapper, container);
+                    wrapper.appendChild(container);
+                });
+            }
+        }
+
+
+        /* Verifica tipo do chamado
+        // -------------------------------------------- */
         function verificaArea() {
-            if (area == "Criação") {
-                /* Capta valor do input CRIA
-                // -------------------------------------------- */
-                inputHoraAlocada = document.getElementById("field-field_currency_28ef7c")?.value || '';
 
-                /* Arruma collapse quebrado CRIA
+            if (inputPrefixoPai) {
+
+                const div = '<div>'+NomeDaArea+'</div>';
+                RenderizaFlutuante.insertAdjacentHTML("beforeend", div);
+
+                const urlLink = "http://google.com";
+                const botaoLink = '<a href="'+urlLink+'">'+inputPrefixoPai.value+'</a>';
+                inputPrefixoPai.insertAdjacentHTML("beforeend", botaoLink);
+            }
+
+            else if (NomeDaArea === "Criação") {
+
+                /* Define hora alocada
+                // -------------------------------------------- */
+                if (inputHoraAlocadaCria) {
+                    HoraAlocada = inputHoraAlocadaCria?.value;
+                }
+                verificaHoraAlocada();
+
+                /* Arruma collapse
                 // -------------------------------------------- */
                 const ArrumaItensRelacionados = document.querySelector('a[data-target="#collapse-section1743106615271"]').setAttribute('data-target', '#collapse-section-1743106615271');
                 const ArrumaItensVinculados = document.querySelector('a[data-target="#collapse-section1743106628590"]').setAttribute('data-target', '#collapse-section-1743106628590');
 
-                /* Fecha collapse Itens vinculados
+                /* Fecha collapse
                 // -------------------------------------------- */
                 const ItensVinculado = document.querySelectorAll('a[data-target="#collapse-section-1743106628590"]');
-                for (var cri = 0; cri < ItensVinculado.length; cri++) {
+                for (let cri = 0; cri < ItensVinculado.length; cri++) {
                     ItensVinculado[cri].click();
                     const FechaItensVinculados = document.querySelector('a[data-target="#collapse-section-1743106628590"]').setAttribute('data-target', '#collapse-section1743106628590');
-                };
-            }
-            else if (area == "Campanhas") {
-                /* Capta valor do input CAMP
-                // -------------------------------------------- */
-                inputHoraAlocada = document.getElementById("field-field_currency_5e8d28")?.value || '';
+                }
 
-                /* Arruma collapse quebrado CAMP
+            }
+            else if (NomeDaArea === "Campanhas") {
+
+                /* Define hora alocada
+                // -------------------------------------------- */
+                if (inputHoraAlocadaCamp) {
+                    HoraAlocada = inputHoraAlocadaCamp?.value;
+                }
+                verificaHoraAlocada();
+
+                /* Arruma collapse
                 // -------------------------------------------- */
                 const ArrumaItensRelacionados = document.querySelector('a[data-target="#collapse-section1741204439162"]').setAttribute('data-target', '#collapse-section-1741204439162');
                 const ArrumaItensVinculados = document.querySelector('a[data-target="#collapse-section1743761535133"]').setAttribute('data-target', '#collapse-section-1743761535133');
 
-                /* Fecha collapse Itens vinculados
-                // -------------------------------------------- */
-                const ItensVinculado = document.querySelectorAll('a[data-target="#collapse-section-1743761535133"]');
-                for (var camp = 0; camp < ItensVinculado.length; camp++) {
-                    ItensVinculado[camp].click();
-                    const FechaItensVinculados = document.querySelector('a[data-target="#collapse-section-1743761535133"]').setAttribute('data-target', '#collapse-section1743761535133');
-                };
             }
         }
+        verificaInputData();
         verificaArea();
 
-        function verificaHoraAlocada() {
-            if (inputHoraAlocada === '') {
-                let popVerificaHoras = '<div class="JSverificaHora alert alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="fa fa-times"></i>Fechar</button><strong>O campo Horas alocadas está vazio!</strong></div>';
-                RenderizaFlutuante.insertAdjacentHTML("afterend", popVerificaHoras);
-            }
-        }
-        verificaHoraAlocada();
 
 
     } setTimeout(verificaChamado, 5000);
@@ -163,22 +188,13 @@
 
     /*  SCROLL SUAVE
     // ------------------------------------------------- */
-
-    document.querySelector('a[href^="#"]').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-    document.querySelector('a[href^="#"]').addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        const targetPosition = targetElement.offsetTop;
-
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
 
