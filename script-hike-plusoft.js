@@ -108,10 +108,11 @@
             /* SE hora alocada for vazio
             // -------------------------------------------- */
             if (HoraAlocada === '') {
-                //const popVerificaHoras = '<div class="JSverificaHora" role="alert">O campo Horas alocadas está vazio!</div>';
+                const popVerificaHoras = '<div class="JSverificaHora" role="alert">O campo <strong>Horas alocadas</strong> está vazio!</div>';
+                RenderizaFlutuante.insertAdjacentHTML("afterend", popVerificaHoras);
                 //document.querySelector('.form-horizontal').insertAdjacentHTML("beforeend", popVerificaHoras);
 
-
+                /*
                 const containers = document.querySelector(".row.field-currency");
 
                 containers.forEach(container => {
@@ -121,6 +122,7 @@
                     container.parentNode.insertBefore(wrapper, container);
                     wrapper.appendChild(container);
                 });
+                */
             }
         }
 
