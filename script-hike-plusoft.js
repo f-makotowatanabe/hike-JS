@@ -11,7 +11,7 @@
 // @run-at       document-idle
 // ==/UserScript==
 
-/*LAST UPDATE 21/08*/
+/*LAST UPDATE 27/08*/
 
 
 (function() {
@@ -43,16 +43,18 @@
 
 
 
-
         /* Adiciona os botões âncora
         // -------------------------------------------- */
         const botaoAncora = '<div class="JSbotaoAncora"><a href="#mainForm"><i class="fa fa-chevron-circle-up"></i></a><a href="#editor"><i class="fa fa-comment"></i></a></div>';
         RenderizaFlutuante.insertAdjacentHTML("afterbegin", botaoAncora);
 
+
+
         /* Adiciona o titulo do chamado no topo
         // -------------------------------------------- */
         const tituloDoChamado = '<div id="JStituloDoChamado">['+inputPrefixo+'] '+inputTitulo+'</div>';
         RenderizaHeader.insertAdjacentHTML("afterend", tituloDoChamado);
+
 
 
         /* Conversor de ISO
@@ -62,6 +64,7 @@
             const [dia, mes, ano] = dataBr.split('/');
             return `${ano}-${mes}-${dia}`;
         }
+
 
 
         /* Verifica data do chamado versu data atual
@@ -101,6 +104,8 @@
 
         }
 
+
+
         /* Verifica se o campo hora no chamado está preenchido
         // -------------------------------------------- */
         let HoraAlocada = '';
@@ -110,7 +115,6 @@
             if (HoraAlocada === '') {
                 const popVerificaHoras = '<div class="JSverificaHora" role="alert">O campo <strong>Horas alocadas</strong> está vazio!</div>';
                 RenderizaFlutuante.insertAdjacentHTML("afterend", popVerificaHoras);
-                //document.querySelector('.form-horizontal').insertAdjacentHTML("beforeend", popVerificaHoras);
 
                 /*
                 const containers = document.querySelector(".row.field-currency");
@@ -125,6 +129,7 @@
                 */
             }
         }
+
 
 
         /* Verifica tipo do chamado
@@ -182,6 +187,18 @@
         }
         verificaInputData();
         verificaArea();
+
+
+
+        /* Arruma o bootstrap
+        // -------------------------------------------- */
+        const divs = document.querySelectorAll('div.col-xs-12.col-sm-5');
+        divs.forEach(div => {
+            // Remove a classe antiga
+            div.classList.remove('col-sm-5');
+            // Adiciona a nova classe
+            div.classList.add('col-sm-8');
+        });
 
 
 
