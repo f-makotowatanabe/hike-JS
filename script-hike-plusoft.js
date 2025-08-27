@@ -115,18 +115,6 @@
             if (HoraAlocada === '') {
                 const popVerificaHoras = '<div class="JSverificaHora" role="alert">O campo <strong>Horas alocadas</strong> está vazio!</div>';
                 RenderizaFlutuante.insertAdjacentHTML("afterend", popVerificaHoras);
-
-                /*
-                const containers = document.querySelector(".row.field-currency");
-
-                containers.forEach(container => {
-                    const wrapper = document.createElement("div");
-                    wrapper.classList.add("JSverificaHora");
-
-                    container.parentNode.insertBefore(wrapper, container);
-                    wrapper.appendChild(container);
-                });
-                */
             }
         }
 
