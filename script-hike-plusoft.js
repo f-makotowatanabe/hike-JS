@@ -11,7 +11,7 @@
 // @run-at       document-idle
 // ==/UserScript==
 
-/*LAST UPDATE 21/08*/
+/*LAST UPDATE 01/09*/
 
 
 (function() {
