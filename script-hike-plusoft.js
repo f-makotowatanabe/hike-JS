@@ -11,7 +11,7 @@
 // @run-at       document-idle
 // ==/UserScript==
 
-/*LAST UPDATE 27/08*/
+/*LAST UPDATE 21/08*/
 
 
 (function() {
@@ -25,15 +25,15 @@
 
         /* Busca as informações no chamado
         // -------------------------------------------- */
-        let NomeDaArea = document.querySelector('h5').textContent;
-        NomeDaArea = NomeDaArea.replace(/[-\s]/g, "");
         const inputPrefixo = document.querySelector('[ng-model="vm.entity.data.prefix_alias"]')?.value || '';
         const inputTitulo = document.getElementById('field-title')?.value || '';
         const inputStatus = document.querySelector('[ng-model="vm.entity.data._bpm_step_title"]');
         const inputData = document.getElementById('field-duedate');
         const inputHoraAlocadaCria = document.getElementById("field-field_currency_28ef7c");
         const inputHoraAlocadaCamp = document.getElementById("field-field_currency_5e8d28");
-        const inputPrefixoPai = document.querySelector('[ng-model="vm.entity.data.bpm_exec.bpm_exec_parent.prefix_alias"]');
+
+
+
 
 
         /* Local onde renderiza os alerts
@@ -120,22 +120,21 @@
 
 
 
+        /* Arruma o bootstrap
+        // -------------------------------------------- */
+        const divs = document.querySelectorAll('div.col-xs-12.col-sm-5');
+        divs.forEach(div => {
+            // Remove a classe antiga
+            div.classList.remove('col-sm-5');
+            // Adiciona a nova classe
+            div.classList.add('col-sm-8');
+        });
+
+
         /* Verifica tipo do chamado
         // -------------------------------------------- */
-        function verificaArea() {
-
-            if (inputPrefixoPai) {
-
-                const div = '<div>'+NomeDaArea+'</div>';
-                RenderizaFlutuante.insertAdjacentHTML("beforeend", div);
-
-                const urlLink = "http://google.com";
-                const botaoLink = '<a href="'+urlLink+'">'+inputPrefixoPai.value+'</a>';
-                inputPrefixoPai.insertAdjacentHTML("beforeend", botaoLink);
-            }
-
-            else if (NomeDaArea === "Criação") {
-
+        function qualChamado(){
+            if (inputPrefixo.includes("CRI-")) {
                 /* Define hora alocada
                 // -------------------------------------------- */
                 if (inputHoraAlocadaCria) {
@@ -155,10 +154,8 @@
                     ItensVinculado[cri].click();
                     const FechaItensVinculados = document.querySelector('a[data-target="#collapse-section-1743106628590"]').setAttribute('data-target', '#collapse-section1743106628590');
                 }
-
             }
-            else if (NomeDaArea === "Campanhas") {
-
+            else if (inputPrefixo.includes("CAMP-")) {
                 /* Define hora alocada
                 // -------------------------------------------- */
                 if (inputHoraAlocadaCamp) {
@@ -170,23 +167,16 @@
                 // -------------------------------------------- */
                 const ArrumaItensRelacionados = document.querySelector('a[data-target="#collapse-section1741204439162"]').setAttribute('data-target', '#collapse-section-1741204439162');
                 const ArrumaItensVinculados = document.querySelector('a[data-target="#collapse-section1743761535133"]').setAttribute('data-target', '#collapse-section-1743761535133');
-
             }
+            else if (inputPrefixo.includes("CRIATASK-")) {
+                const inputPrefixoPai = document.querySelector('[ng-model="vm.entity.data.bpm_exec.bpm_exec_parent.prefix_alias"]');
+                const botaoLink = '<span class="input-group-btn"><a type="button" class="btn btn-primary btn-sm" href="https://plusoft-itsm.inpaas.com/api/browse/'+inputPrefixoPai.value+'" target="_blank">Abrir chamado '+inputPrefixoPai.value+'</a></span>';
+                inputPrefixoPai.insertAdjacentHTML("afterend", botaoLink);
+            }
+
         }
+        qualChamado();
         verificaInputData();
-        verificaArea();
-
-
-
-        /* Arruma o bootstrap
-        // -------------------------------------------- */
-        const divs = document.querySelectorAll('div.col-xs-12.col-sm-5');
-        divs.forEach(div => {
-            // Remove a classe antiga
-            div.classList.remove('col-sm-5');
-            // Adiciona a nova classe
-            div.classList.add('col-sm-8');
-        });
 
 
 
