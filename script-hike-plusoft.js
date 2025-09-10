@@ -45,8 +45,21 @@
 
         /* Adiciona os botões âncora
         // -------------------------------------------- */
-        const botaoAncora = '<div class="JSbotaoAncora"><a href="#mainForm"><i class="fa fa-chevron-circle-up"></i></a><a href="#editor"><i class="fa fa-comment"></i></a></div>';
+        const observer = new MutationObserver(() => {
+            const botaoComent = document.querySelector('button[uib-tooltip="Comentários"]');
+            if (botaoComent) {
+                botaoComent.click();
+                console.log("Botão 'Comentários' clicado via observer.");
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        const botaoAncora = '<div class="JSbotaoAncora"><a href="#mainForm" onclick="clicaComent();"><i class="fa fa-chevron-circle-up"></i></a><a href="#editor"><i class="fa fa-comment"></i></a></div>';
         RenderizaFlutuante.insertAdjacentHTML("afterbegin", botaoAncora);
+
+
 
 
 
@@ -122,14 +135,25 @@
 
         /* Arruma o bootstrap
         // -------------------------------------------- */
-        const divs = document.querySelectorAll('div.col-xs-12.col-sm-5');
-        divs.forEach(div => {
-            // Remove a classe antiga
-            div.classList.remove('col-sm-5');
-            // Adiciona a nova classe
-            div.classList.add('col-sm-8');
-        });
+        function ArrumaBootstrap() {
+            // achar uma forma de fazer if else para entender onde o control label está
+            // esse script funciona para os formularios, porem quebra o checkbox
+            // SE control-label é uma questão, usar tamanho col-sm-2.
+            // SE control-label é um checkbox, usar tamanho col-sm-10.
 
+            //const divs1 = document.querySelectorAll('.col-xs-12.col-sm-4.control-label');
+            //divs1.forEach(element => {
+            //    element.classList.remove('col-sm-4');
+            //    element.classList.add('col-sm-2');
+            //});
+
+            const divs2 = document.querySelectorAll('.col-xs-12.col-sm-5');
+            divs2.forEach(element => {
+                element.classList.remove('col-sm-5');
+                element.classList.add('col-sm-8');
+            });
+        }
+        ArrumaBootstrap();
 
         /* Verifica tipo do chamado
         // -------------------------------------------- */
@@ -170,8 +194,15 @@
             }
             else if (inputPrefixo.includes("CRIATASK-")) {
                 const inputPrefixoPai = document.querySelector('[ng-model="vm.entity.data.bpm_exec.bpm_exec_parent.prefix_alias"]');
-                const botaoLink = '<span class="input-group-btn"><a type="button" class="btn btn-primary btn-sm" href="https://plusoft-itsm.inpaas.com/api/browse/'+inputPrefixoPai.value+'" target="_blank">Abrir chamado '+inputPrefixoPai.value+'</a></span>';
-                inputPrefixoPai.insertAdjacentHTML("afterend", botaoLink);
+
+                if (inputPrefixoPai.value !== '') {
+                    const botaoLink = '<span class="input-group-btn"><a type="button" class="btn btn-primary btn-sm" href="https://plusoft-itsm.inpaas.com/api/browse/'+inputPrefixoPai.value+'" target="_blank">Abrir chamado pai</a></span>';
+                    inputPrefixoPai.insertAdjacentHTML("afterend", botaoLink);
+                }
+                else {
+                    const botaoLink = '<div class="input-group-addon ChamadoPaiNaoRelacionado">Chamado pai não relacionado</div>'
+                    inputPrefixoPai.insertAdjacentHTML("beforebegin", botaoLink);
+                }
             }
 
         }
