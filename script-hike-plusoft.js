@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HIKE - Página Chamado
 // @description  Melhorias na interface do HIKE
-// @version      2.0.1
+// @version      2025.09.12
 // @author       MakotoWatanabe
 // @include      https://plusoft-itsm.inpaas.com/forms-v2/bpmruntime.userflows.forms.bpm_workflow_*
 // @icon         https://hikeplatform.com/wp-content/themes/area-structure-1/assets/images/favicon.png
@@ -10,8 +10,6 @@
 // @grant        none
 // @run-at       document-idle
 // ==/UserScript==
-
-/*LAST UPDATE 12/09*/
 
 
 (function() {
