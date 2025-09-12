@@ -1,0 +1,1688 @@
+/* ==UserStyle==
+@name			Hike
+@namespace		PLUSOFT
+@version		2025.09.12
+@author			@MakotoWatanabe <fernandomakoto@plusoft.com>
+@description	Ajustes e melhorias para plataform Plusoft Hike
+@updateURL		https://userstyles.world/api/style/22878.user.css
+@homepageURL	https://userstyles.world/api/style/22878/
+==/UserStyle== */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+@-moz-document domain("plusoft-itsm.inpaas.com") {/* GERAL */
+	
+	:root {
+
+		--min-width-kanban: 265px;
+		
+		::-webkit-scrollbar {
+            background-color: transparent;
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background:#444 !important;
+            /*background: linear-gradient(#21d4fd, #b721ff) !important;*/
+            border-radius: 100px;
+        }
+		
+		scrollbar-color: #999 transparent;
+	
+
+		--gray-50: #080808;
+		--gray-75: #1a1a1a;
+		--gray-100: #1e1e1e;
+		--gray-200: #2c2c2c;
+		--gray-300: #393939;
+		--gray-400: #494949;
+		--gray-500: #5c5c5c;
+		--gray-600: #7c7c7c;
+		--gray-700: #a2a2a2;
+		--gray-800: #c8c8c8;
+		--gray-900: #efefef;
+
+		--blue-400: #1473e6;
+		--blue-500: #2680eb;
+		--blue-600: #378ef0;
+		--blue-700: #4b9cf5;
+
+		--red-400: #d7373f;
+		--red-500: #e34850;
+		--red-600: #ec5b62;
+		--red-700: #f76d74;
+
+		--orange-400: #da7b11;
+		--orange-500: #e68619;
+		--orange-600: #f29423;
+		--orange-700: #f9a43f;
+
+		--green-400: #268e6c;
+		--green-500: #2d9d78;
+		--green-600: #33ab84;
+		--green-700: #39b990;
+		--celery-700: #51d267;
+
+		--indigo-100: #1A1D61;
+		--indigo-1000: #AEB1FF;
+		--indigo-1200: #D4D5FF;
+
+	}	
+	
+	
+	/* LODING */
+	.loadwait {
+		padding-top: initial;
+		background: rgba(0,0,0,0.9);
+	}
+	.loadwait .panel-body{
+		height: 100vh;
+		background-color: var(--gray-100);
+	}
+	.loadwait .wait-icon {display:none}
+
+	
+	/* CORPO */
+	HTML,body {
+		margin:0 !important;
+		padding:0 !important;
+	}
+	
+	body,
+	#content-container,
+	#navbar,
+	#page-head,
+	#content-container::before {
+		background-color: var(--gray-50);
+		color: var(--gray-900);
+		font-family: "Open Sans", sans-serif;
+	}
+
+	/* MENU ESQUERDO */
+	#mainnav-container {
+		padding: 0
+	}
+
+	#mainnav {
+		background-color: var(--gray-75);
+		color: var(--gray-800);
+	}
+
+	#mainnav-menu-wrap .nano {
+		margin-top: 0
+	}
+
+	#mainnav .list-header {
+		color: var(--gray-900);
+	}
+	#mainnav .list-divider {
+		border-color: var(--gray-300);
+	}
+	
+	a[href="/#!/forms/BPM_WORKFLOW_81D0F4"] .pli-engineering::before,
+	a[href="/#!/forms/BPM_WORKFLOW_52E466"] .pli-engineering::before {
+		content: "\ebd1";
+	}
+	a[href="/#!/forms/BPM_WORKFLOW_5BC3C6"] .pli-engineering::before,
+	a[href="/#!/forms/BPM_WORKFLOW_4CF8B0"] .pli-engineering::before {
+		content:"\f04f"
+	}
+
+	/* RELOGINHO */
+	.sticky-brand-icon {
+		top: calc(100vh - 0px);
+	}
+	.sticky-brand-icon li {
+		margin-bottom: 0 !important;
+	}
+
+	
+	/* LOGO */
+	/*invisivel*/
+	.navbar-header::before {
+		background-color: var(--gray-900);
+	}
+	.navbar-brand {
+		display:none !important;
+		/*content: url("https://plusoft.com/wp-content/uploads/2024/08/logo-footer.png");*/
+	}
+
+	
+	/* NAVBAR PRINCIPAL */
+	.navbar-content {
+		background-color: var(--gray-75);
+		color: var(--gray-800);
+	}
+	.navbar-top-links .tgl-menu-btn a,
+	.navbar-content .custom-search-form input,
+	.navbar-top-links > li > a,
+	.navbar-top-links > li > a:not(.mainnav-toggle) > i {
+		color: var(--gray-800);
+	}
+
+	
+	/* PERFIL - box que abre */
+	.navbar-top-links .head-list li a {
+		color: var(--gray-900) !important;
+	}
+	.navbar-top-links .head-list li a i:before {
+		color: var(--gray-900)
+	}
+	.navbar-top-links .head-list li a:hover {
+		background-color: var(--gray-200)
+	}
+	
+
+	/* BUSCA GERAL */
+	.search-wrapper .search-input,
+	.navbar-content .custom-search-form input{
+		background-color: var(--gray-200) !important;
+	}
+	.navbar-content .custom-search-form input:focus {
+		border: 1px solid var(--gray-500) !important;
+	}
+	/* BUSCA GERAL - box que abre */
+	.navbar-content .panel.container-search-record,
+	.navbar-content .dropdown-menu {
+		background-color:  var(--gray-75);
+		border-color: var(--gray-200);
+	}
+	.navbar-content .panel.container-search-record{
+		border-radius: 0 !important
+	}
+	.navbar-content .panel.container-search-record .panel-title {
+		color: var(--gray-900)
+	}
+	.navbar-content .panel.container-search-record .bg-gray {
+		background-color: var(--gray-200);
+	}
+	.navbar-content .panel.container-search-record .bg-gray a {
+		color: var(--gray-900);
+	}
+	
+
+	
+	/* BUSCA PAINEL*/
+	.form-control.input-search,
+	.form-control.input-search-finder {
+		background-color: var(--gray-100);
+		color: var(--gray-900);
+		border-color: var(--gray-200);
+	}
+	.input-group.finder-container select,
+	.input-group-addon,
+	.input-finder-select {
+		color: var(--gray-800);
+		background-color: var(--gray-75) !important;
+		border-radius: initial !important;
+	}
+	
+	.field-wrapper .composeSearch-composition::after {
+		right: 210px;
+	}
+	.field-wrapper .composeSearch-composition button{
+		background-color: var(--gray-100);
+		border-color: var(--gray-200);
+		margin-left: 10px;
+	}
+	.field-wrapper .composeSearch-composition input.form-control {
+		background-color: var(--gray-100);
+		margin-left: 40px !important;
+	}
+	
+	.field-wrapper .dropdown-menu {
+		background-color: var(--gray-75);
+	}
+	.field-wrapper .dropdown-menu a {
+		color: var(--gray-900);
+	}
+
+
+	/* TABELAS */
+	.table thead th {
+		background-color: transparent;
+	}
+	
+	.table > thead:first-child > tr:first-child > th {
+		border: none
+	}
+	.table span.text-muted {
+		border: 1px solid var(--gray-500);
+		color: var(--gray-800);
+		padding: 0 10px;
+		border-radius: 10px;
+		font-weight: 600;
+	}
+	
+	.table-striped {
+		border: none;
+	}
+	.table-striped > tbody > tr:nth-child(2n+1) {
+		background-color: var(--gray-75) !important;
+	}
+	
+	.table-striped > thead > tr > th {
+		color: var(--gray-900) !important;
+	}
+	.table-striped > tbody > tr > td {
+		color: var(--gray-800) !important;
+		border-bottom: 1px solid var(--gray-200);
+	}
+	.table-striped > tbody > tr > td > div > span {
+		color: var(--gray-800) !important;
+	}
+	
+
+	
+	/* PAGINATION */
+	.pagination {
+		border: 1px solid var(--gray-200) !important;
+		background-color: var(--gray-50) !important;
+	}
+	.pagination a {
+		border: none !important;
+		color: var(--gray-800) !important;
+	}
+	.pagination a:hover {
+		background-color: var(--gray-100) !important;
+		color: var(--gray-900) !important;
+	}
+	.pagination > .active > a {
+		border: 0 !important;
+		background-color: var(--gray-300) !important;
+		color: var(--gray-900) !important;
+	}
+	.pagination .disabled > a {
+		border: 0 !important;
+		color: var(--gray-300) !important;
+	}
+
+
+	/* FOOTER */
+	.footer {
+		display: none
+	}
+
+
+}
+
+@-moz-document url("https://plusoft-itsm.inpaas.com/#!/pending") {/* ABA MINHAS PENDENCIAS */
+	
+	#page-content {
+		padding: 0 30px!important
+	}
+	#content-container {
+		padding-bottom: 0!important
+	}
+
+	#page-head {
+		display: none
+	}
+
+	#panel-network {
+		background-color: initial !important;
+	}
+
+	/* LABEL */
+	span.label-danger {
+		background-color: transparent;
+		border: 1px solid var(--red-400);
+		color: var(--red-400) !important;
+	}
+	span.label-warning {
+		background-color: transparent;
+		border: 1px solid var(--orange-400);
+		color: var(--orange-400) !important;
+	}
+	span.label-success {
+		background-color: transparent;
+		border: 1px solid var(--celery-700);
+		color: var(--celery-700) !important;
+	}
+}
+
+
+@-moz-document url("https://plusoft-itsm.inpaas.com/#!/home") {/*ABA VISÃO GERAL*/
+	.panel{
+		background-color: var(--gray-100);
+	}
+	.text-primary, a.text-primary:hover, a.text-primary:focus {
+  		color: var(--gray-900);
+	}
+	.text-main, a.text-main:hover, a.text-main:focus {
+	  	color: var(--gray-900);
+	}
+	#container .table th {
+		color: var(--gray-900);
+	}
+	
+	.my-dashboard {
+		display:none
+	}
+	
+	.dropdown-menu {
+		background-color: var(--gray-100);
+		border: 1px solid var(--gray-300);
+	}
+	.dropdown-header {
+		color: var(--gray-600);
+	}
+	.dropdown-menu .divider {
+		background-color: var(--gray-300);
+	}
+	.btn-default {
+		background-color: var(--gray-200) !important;
+		border-color: var(--gray-400) !important;
+	}
+}
+@-moz-document url("https://plusoft-itsm.inpaas.com/#!/workflows") {/* ABA PROCESSOS */
+
+	/* CONTENT */
+	#page-content {
+		padding: 0 30px!important
+	}
+	#content-container {
+		padding-bottom: 0!important
+	}
+
+	.tab-base {
+		margin-bottom: 0
+	}
+
+	.tab-content {
+		background-color: transparent !important;
+		margin-bottom: 0!important
+	}
+
+	#page-head {
+		display: none
+	}
+
+
+	/* BOTOES DE AÇÃO */
+	.btn-default:hover,
+	.btn-default:active,
+	.btn-default {
+		background-color: transparent !important;
+		color: var(--gray-000) !important;
+		border-color: var(--gray-500) !important;
+	}
+
+	.btn-default.btn-primary {
+		background-color: var(--gray-100) !important;
+		color: var(--gray-900) !important;
+		border-color: var(--gray-50) !important;
+	}
+
+
+	.label-default {
+		border: 1px solid var(--bg4);
+		background-color: var(--bg3);
+		color: var(--gray-800);
+	}
+
+
+
+	/* CARDS DE PROCESSOS */
+	.panel.panel-bordered-default {
+		background-color: var(--gray-75);
+		border: 1px solid var(--gray-100);
+		color: var(--gray-800);
+	}
+	.panel.panel-bordered-default:hover {
+		background-color: var(--gray-200);
+		border: 1px solid var(--gray-600);
+	}
+
+	.panel.panel-bordered-default h4 {
+		font-size: 26px;
+		line-height: normal;
+		height: 100%;
+		max-height: 100%;
+		min-height: auto;
+		color: var(--gray-800);
+	}
+	
+	.panel-error {
+		background-color: var(--gray-100);
+	}
+	
+}
+
+@-moz-document url("https://plusoft-itsm.inpaas.com/#!/dynamiciframe?link=50a17884-bcf2-4095-b090-dd4628c7827c"), url("https://plusoft-itsm.inpaas.com/forms/bpm.static.forms.pages.alldemands") {/* ABA TODAS AS DEMANDAS */
+
+	/* CONTENT */
+	#page-content {
+		padding: 0 20px!important
+	}
+	#content-container {
+		padding-bottom: 0!important
+	}
+	.panel {
+		background-color: initial !important;
+	}
+
+	#page-head {
+		display: none
+	}
+
+
+	/* LABEL */
+	span.label-danger {
+		background-color: transparent;
+		border: 1px solid var(--red-400);
+		color: var(--red-400) !important;
+	}
+	span.label-warning {
+		background-color: transparent;
+		border: 1px solid var(--orange-400);
+		color: var(--orange-400) !important;
+	}
+	span.label-success {
+		background-color: transparent;
+		border: 1px solid var(--celery-700);
+		color: var(--celery-700) !important;
+	}
+}
+
+@-moz-document url-prefix("https://plusoft-itsm.inpaas.com/forms-v2/finder/BPM_WORKFLOW_"), url-prefix("https://plusoft-itsm.inpaas.com/forms-v2/finder/HIKE_") {/* KANBAN e LIST */
+
+	.row.ng-scope {margin:0 !important; padding:0 !important}
+	
+	#page-title {
+		display: none;
+	}
+	
+	/* Botão novo chamado*/
+	.page-actions {
+		position:absolute;
+		padding: 0 !important;
+		top: 20px;
+		right: 300px;
+		z-index:1;
+	}
+	.btn.btn-labeled {
+		padding: 6px;
+		margin:0;
+	}
+	.btn.btn-labeled .btn-label {
+		border: none;
+		width: initial;
+		line-height: initial !important;
+		margin: initial;
+	}
+	.btn.btn-labeled span {
+		display:none;
+	}
+	
+	/* Seletor de filtros */
+	.input-group.finder-container select {
+		max-width: 300px;
+	}
+	
+	
+	.panel {
+		background-color: initial;
+		margin-bottom: 0 !important;
+	}
+	
+	
+	/* KANBAN - Modo cards */
+	#view-layout {
+		background-color: transparent !important;
+	}
+	
+	#KanbanViewController,
+	#kanbanContainer {
+		margin: 0 !important;
+	}
+	
+	#KanbanViewController {
+		height: calc(100vh - 120px) !important;
+	}
+	
+	
+
+	/* KANBAN - seletor de workflow */
+	.kanban-summary {
+		background-color: transparent !important;
+		padding:0 !important;
+		display: none;
+	}
+	.kanban-summary select {
+		text-transform: uppercase;
+	}
+	
+	
+	
+	/* KANBAN - header de coluna do workflow */
+	#headerKanban {
+		background-color: var(--gray-50) !important;
+	}
+	#headerKanbanItemStep {
+		border-top-width: 1px !important
+	}
+	
+	#headerInformation {
+		background-color: var(--gray-200) !important;
+		height: auto !important;
+		padding: 10px !important;
+	}
+	#headerInformation .open > .sortTitle {
+		padding: 1px 2px;
+		background-color: var(--gray-75);
+	}
+	
+	.titleTask-primary {
+		border-top-color: var(--gray-700) !important;
+	}
+	.titleTask-succses {
+		border-top-color: var(--celery-700) !important;
+	}
+	.titleTask-danger {
+		border-top-color: var(--red-400) !important;
+	}
+	@media (min-width: 768px) {
+		.titleTask-primary{
+			background-color: transparent;
+		}
+	}
+	
+	/* KANBAN - Campo de busca */
+	#headerKanbanCol {
+		position: relative
+	}
+	#headerKanbanCol div[ng-show="fieldSearch.step == stage.step"] {
+		position: absolute;
+		z-index: 1;
+		top: 4px;
+		left: 10px;
+		width: 190px;
+		background: initial !important ;
+		border: initial !important
+	}
+	#headerKanbanCol div[ng-show="fieldSearch.step == stage.step"] .form-group {
+		margin: 0
+	}
+	#headerKanbanCol div[ng-show="fieldSearch.step == stage.step"] .form-group div {
+		top: 5px !important;
+		right: 5px !important;
+	}
+	#headerKanbanCol div[ng-show="fieldSearch.step == stage.step"] .form-group input {
+		color: var(--gray-900);
+		background-color: var(--gray-75);
+	}
+	#headerKanbanCol div[ng-show="fieldSearch.step == stage.step"] .form-group input::placeholder  {
+		color: var(--gray-600) !important;
+	}
+	
+	
+	/* KANBAN - Coluna do workflow */
+	#cardsKanban {
+		height: calc(100vh - 162px) !important;
+		padding-top: 2px;
+		overflow: auto;
+	}
+	#col {
+		overflow: auto;
+		padding: 10px;
+		background-color: var(--gray-100);
+	}
+	.tasklist {
+		background-color: initial;
+		border-radius: 0;
+		padding: 0;
+	}
+	
+	
+	
+	/* KANBAN - Estilo do cartão */
+	.task-card {
+		box-shadow: initial !important;
+		margin: 0;
+		border-radius: 6px;
+		border:1px solid var(--gray-400);
+		background-color: var(--gray-200);
+		padding: 0 10px 10px 10px;
+		margin-bottom: 15px;
+	}
+	
+	@media (min-width: 768px) {
+		.containerCards {
+		padding: unset;
+		}
+	}
+	.containerCards {
+		border-radius: 8px;
+		position: relative;
+		cursor: grab !important;
+	}
+	
+	.containerCards .text-main {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		margin:0;
+	}
+	
+	/* KANBAN - btn editar do card */
+	.containerCards .dropdown {
+		display:none
+	}
+	.containerCards:hover .dropdown {
+		display:block
+	}
+	.containerCards .dropdown .sortCard {
+		position: absolute !important;
+		right: 5px !important;
+		top: 5px !important;
+		padding:5px !important;
+		max-width: initial !important;
+		border:0;
+		background-color:var(--gray-100);
+	}
+	.containerCards .dropdown.open .sortCard::before {
+		position: absolute !important;
+		right: 0 !important;
+		top: 0 !important;
+		background-color:var(--gray-500);
+		padding: 5px !important;
+	}
+
+	.containerCards .dropdown .dropdown-menu {
+		top: 20px !important;
+		right: 20px !important;
+		left: initial !important;
+	}
+	
+	.containerCards .dropdown.open .dropdown-menu {
+		border:1px solid var(--gray-500);
+		border-radius: 5px;
+	}
+	
+	.containerCards .dropdown.open .dropdown-menu > li {
+		background-color: var(--gray-100);
+	}
+
+	/* KANBAN - Linhas do card */
+	.containerCards div.ng-scope {
+		display: block !important;
+		width: 100%;
+		justify-content: normal !important;
+	}
+	.containerCards div.ng-scope div:first-child {
+		width: 100% !important;
+		display: block !important;
+		margin-top: 6px;
+	}
+
+	.containerCards div.ng-scope div:last-child {
+		width: 100% !important;
+		display: block !important;
+	}
+	
+	.containerCards div.ng-scope div span {
+		white-space: initial !important;
+		display: initial !important;
+		justify-content: unset !important;
+		float: none !important;
+		color: var(--gray-600) !important;
+	}
+	.containerCards div.ng-scope div:first-child span.ng-binding {
+		font-size: 10px !important;
+		font-weight: normal !important;
+	}
+
+	.containerCards div.ng-scope div span.ng-binding.ng-scope {
+		color: var(--gray-900) !important;
+		font-size: 14px !important;
+		font-weight: 600 !important;
+		word-break: break-word;
+	}
+	
+	.containerCards div.ng-scope div:has(span.ng-binding.ng-scope) {
+		padding-bottom: 3px;
+		border-bottom:1px dashed var(--gray-400)
+	}
+	
+	.containerCards div.ng-scope div span[title="Tipo de demanda"],
+	.containerCards div.ng-scope div span[title="Tipo de ação"],
+	.containerCards div.ng-scope div span[title="Tipo"] {
+		display: none !important;
+	}
+
+	/* KANBAN - tag de status da demanda */
+	.box-inline .label {
+		font-size: 10px;
+		padding: 2px;
+	}
+	.box-inline .label.label-warning {
+		background-color: var(--gray-100);
+		color: var(--gray-900);
+	}
+	.box-inline .label.label-success {
+		background-color: var(--celery-700);
+		color: var(--gray-50);
+	}
+	
+	/* KANBAN - linha do card status */
+	.containerCards > div.ng-scope div span[title="A fazer"]:before {
+		font-family: FontAwesome;
+		content: "\f111";
+		font-size: 16px;
+		padding:0 4px;
+		color: var(--gray-500);
+	}
+	.containerCards > div.ng-scope div span[title="Em análise"]:before,
+	.containerCards > div.ng-scope div span[title="Em ajuste"]:before,
+	.containerCards > div.ng-scope div span[title="Em análise"]:before,
+	.containerCards > div.ng-scope div span[title="Em ajuste"]:before {
+		font-family: FontAwesome;
+		content: "\f111";
+		font-size: 16px;
+		padding:0 4px;
+		color: var(--gray-900);
+	}
+	.containerCards > div.ng-scope div span[title="Em andamento"]:before,
+	.containerCards > div.ng-scope div span[title="Validação do disparo"]:before,
+	.containerCards > div.ng-scope div span[title="Disparo"]:before {
+		font-family: FontAwesome;
+		content: "\f0a9";
+		font-size: 16px;
+		padding:0 4px;
+		color: var(--green-700);
+	}
+	.containerCards > div.ng-scope div span[title="Em aprovação"]:before,
+	.containerCards > div.ng-scope div span[title="Aguardando área resolvedora"]:before {
+		font-family: FontAwesome;
+		content: "\f111";
+		font-size: 16px;
+		padding:0 4px;
+		color: var(--orange-700);
+	}
+	.containerCards > div.ng-scope div span[title="Concluído"]:before {
+		font-family: FontAwesome;
+		content: "\f058";
+		font-size: 16px;
+		padding:0 4px;
+		color: var(--celery-700);
+	}
+	.containerCards > div.ng-scope div span[title="Cancelado"]:before {
+		font-family: FontAwesome;
+		content: "\f2d3";
+		font-size: 16px;
+		padding:0 4px;
+		color: var(--red-600);
+	}
+
+	/* KANBAN - Linha tipo de demanda */
+	.dropdownlabelCustom.label {
+		border: none !important;
+		font-size: 10px !important;
+		font-weight: 600 !important;
+		padding: 0 3px !important;
+		margin: 0;
+		border-radius: 0;
+	}
+	.dropdownlabelCustom.label[title="Ação pontual"] {
+		background-color: var(--gray-400) !important;
+		color: var(--orange-700) !important;
+	}
+	.dropdownlabelCustom.label[title="Jornada"] {
+		background-color: var(--gray-400) !important;
+		color: var(--celery-700) !important;
+	}
+	.dropdownlabelCustom.label[title="Texto"] {
+		background-color: var(--gray-400) !important;
+		color: var(--red-700) !important;
+	}
+	.dropdownlabelCustom.label[title="Layout"] {
+		background-color: var(--gray-400) !important;
+		color: var(--orange-700) !important;
+	}
+	.dropdownlabelCustom.label[title="HTML"] {
+		background-color: var(--gray-400) !important;
+		color: var(--celery-700) !important;
+	}
+	.dropdownlabelCustom.label[title="Revisão"] {
+		background-color: var(--gray-400) !important;
+		color: var(--gray-900) !important;
+	}
+	.dropdownlabelCustom.label[title="Ajuste"],
+	.dropdownlabelCustom.label[title="Suporte"],
+	.dropdownlabelCustom.label[title="Extração"]{
+		background-color: var(--gray-50) !important;
+		color: var(--gray-900) !important;
+	}
+	.dropdownlabelCustom.label[title="Suporte"] {
+		background-color: var(--gray-900) !important;
+		color: var(--gray-100) !important;
+	}
+	
+	/* KANBAN - mini visor de scroll */
+	.scrollKanbanDiv {
+		height: 15px;
+		background-color: var(--gray-300);
+		position:absolute;
+		bottom:10px;
+		right: calc(100vw - 55%);
+		opacity: 0.3;
+		transition: opacity 0.2s ease-in-out;
+	}
+	.scrollKanbanDiv:hover {
+		opacity: 1;
+	}
+	.scrollKanbanColumn {
+		height: 8px;
+		background-color: var(--gray-50)
+	}
+	.scrollKanbanSquareCursorMove {
+		border: 2px solid var(--gray-600);
+	}
+	
+
+
+	/* MODAL - registro de tarefa */
+	:has(.sliderOpen) #KanbanViewController #kanbanContainer {
+		display: none !important
+	}
+	.sliderOpen {
+		width: 100%;
+		transition-property: none !important;
+ 		transition-duration: unset !important;
+	}
+	#page-slide-btn{
+		background-color: var(--gray-900) !important;
+		color: var(--gray-100) !important;
+		border-radius: 0px!important;
+		left: 0;
+		top: 10px;
+		padding: 0;
+	}
+	
+	#page-slide-btn i{
+		transform: rotate(45deg);
+		font-size:20px;
+	}
+	
+	#page-slide-btn i:after {left: 7px; top: 12px;}
+	#page-slide-btn i:before {left: 14px; top: 19px;}
+	
+	
+	
+	
+	/* LISTA modo tabela */
+	.finder-table .label-success,
+	.finder-table .label-danger,
+	.finder-table .label-warning,
+	.finder-table .label-primary,
+	.finder-table .label-default {
+		background-color: transparent !important;
+		color: var(--gray-800) !important;
+		display: initial; 
+	}
+	
+	.finder-table span[uib-tooltip="Em andamento"]{
+		color: var(--celery-700) !important;
+	}
+	
+	.finder-table span[uib-tooltip="Em aprovação"]{
+		color: var(--orange-400) !important;
+	}
+	
+	.table-striped > tbody > tr:nth-child(2n+1) {
+		background-color: var(--gray-75) !important;
+	}
+	
+	.table-striped > tbody > tr[style="background-color: rgba(255, 199, 199, 0.41);"] {
+		background-color: rgba(255, 0, 0, .2) !important;
+	}
+	
+	#container-list {
+		height: calc(100vh - 180px);
+	}
+	
+	#finder-list-table thead {
+		position: sticky;
+		top: 0;
+		background-color: var(--gray-50);
+	}
+}
+
+
+@-moz-document url-prefix("https://plusoft-itsm.inpaas.com/forms-v2/finder/BPM_WORKFLOW_5BC3C6") {/* KANBAN C/SELETOR */
+
+	/* KANBAN - Seletor de fluxo */
+	.kanban-summary {
+		display:block
+	}
+	#cardsKanban {
+		height: calc(100vh - 205px) !important;
+	}
+
+
+}
+
+
+@-moz-document /*url-prefix("https://plusoft-itsm.inpaas.com/forms-v2/finder/BPM_WORKLOG"),*/url-prefix("https://plusoft-itsm.inpaas.com/forms-v2/bpm.worklog.forms.bpm_worklog"), url-prefix("https://plusoft-itsm.inpaas.com/forms-v2/bpmruntime.userflows.forms.bpm_workflow_") {/* PAGINA CHAMADO */
+	
+	.container-fluid {
+		margin: 0!important;
+		padding: 0!important;
+	}
+	
+	#mainForm {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 15px 80px !important;
+	}
+	@media (min-width: 768px) {
+		#mainForm {
+			padding: unset;
+		}
+	}
+	.page-text-header {
+		position: sticky;
+		top: 0;
+		z-index: 11;
+		background-color: var(--gray-75);
+		padding: 10px !important;
+		border-bottom: 1px solid var(--gray-500);
+	}
+	
+	.page-header-h1 {
+		position:relative;
+		padding: initial;
+		font-size: 0 !important;
+	}
+	
+	.fa-link.clickable {
+		color: var(--gray-900) !important;
+		display: inline-block;
+  		vertical-align: middle;
+		margin-left:10px;
+		background-color: var(--gray-200);
+		border:1px solid var(--gray-600);
+		padding:4px 10px;
+		border-radius:6px;
+	}
+	.fa-link.clickable:before {
+		font-family: FontAwesome;
+		content: "\f045 ";
+	}
+	.fa-link.clickable:after {
+		font-family: "Open Sans",sans-serif;
+		content: "Copiar link";
+		margin-left:10px;
+	}
+	.fa-link.clickable:hover {
+		background-color: var(--gray-100);
+	}
+	
+	h5 {
+		color: var(--gray-900) !important;
+		font-weight: 600 !important;
+		font-size: 20px !important;
+	}
+	
+	.panel {
+		background-color: var(--gray-75) !important;
+		border:0;
+		border-radius:10px;
+	}
+	
+	
+	.mainWrapperFields > :first-child,
+	.widget-box.widget-well .panel-heading,
+	.widget-box.widget-well .widget-header {
+		border-radius: 0;
+		background-color: var(--gray-75) !important;
+		border:0;
+	}
+	.mainWrapperFields > :last-child,
+	.widget-box.widget-well .widget-body {
+		border-radius: 0;
+		background-color: var(--gray-75) !important;
+		border:0;
+	}
+	.widget-box.widget-well .panel-title,
+	.widget-box.widget-well .widget-header h5 {
+		color: var(--gray-900) !important;
+		font-weight: 600 !important;
+		font-size: 18px !important;
+	}
+	
+	
+	
+	/* FORM */
+	.control-label {
+		color: var(--gray-800);
+	}
+	
+	.form-control {
+		color: var(--gray-900) !important;
+		background-color: var(--gray-200) !important;
+	}
+	
+	.form-control.fieldForm-readonly {
+		color: var(--gray-900) !important;
+		background-color: var(--gray-100) !important;
+	}
+	div.form-control.fieldForm-readonly {
+		cursor: not-allowed;
+	}
+	.form-control.fieldForm-readonly strong {
+		color: var(--gray-900) !important;
+	}
+	textarea.form-control {
+		resize: vertical !important;
+		min-height: 200px;
+	}
+	
+	.options-wrapper,
+	.options-wrapper .dropdown-menu {
+		background-color: var(--gray-200);
+	}
+	.options-wrapper .dropdown-menu li a {
+		color: var(--gray-700);
+	}
+	.options-wrapper .dropdown-menu li.active a {
+		background-color: var(--gray-75) !important;
+		color: var(--gray-900) !important;
+		font-weight:bold;
+	}
+	.form-control .label-success,
+	.form-control .label-warning,
+	.form-control .label-primary,
+	.form-control .label-default {
+		background-color: var(--gray-50) !important;
+		color: var(--gray-900) !important;
+	}
+	.options-wrapper .label-success,
+	.options-wrapper .label-warning,
+	.options-wrapper .label-primary,
+	.options-wrapper .label-default {
+		background-color: transparent !important;
+		color: var(--gray-900) !important;
+	}
+	
+	.well {
+		background-color: initial !important;
+		border:none
+	}
+	.search-container .input-search {
+		background: initial;
+	}
+	.bootstrap-datetimepicker-widget {
+		background: var(--gray-75) !important;
+	}
+	
+	
+	/* ITENS RELACIONADOS/VINCULADOS */
+	.mainWrapper.panel{
+		border-radius: 0;
+	}
+	th[style="background-color: white;border-bottom:0px"]{
+		background-color: initial!important;
+	}
+	
+	
+	
+	/* BOX COMENTARIOS */
+	.ql-toolbar,
+	.ql-container,
+	.dropzone-label {border-color: var(--gray-400) !important;}
+	
+	
+	.ql-container {
+		font-family: inherit;
+		background-color: var(--gray-200) !important;
+	}
+	
+	.ql-container .ql-editor::before {
+		color: var(--gray-700) !important;
+	}
+	
+	.ql-container .ql-editor {
+		font-size: 16px;
+	  	line-height: 1.45;
+		padding: 15px;
+	}
+	
+	.ql-container .ql-editor ol,
+	.ql-container .ql-editor h1,
+	.ql-container .ql-editor h2,
+	.ql-container .ql-editor h3,
+	.ql-container .ql-editor h4,
+	.ql-container .ql-editor h5,
+	.ql-container .ql-editor h6,
+	.ql-container .ql-editor p {
+		color: var(--gray-900);
+		margin-bottom: 15px !important;
+	}
+	.ql-container .ql-editor p > strong {font-weight: 600; color: var(--gray-900)}
+	
+	.ql-container .ql-editor blockquote {
+		color: var(--gray-900);
+		margin-bottom: 15px !important;
+		background-color: var(--gray-300);
+		padding: 20px;
+		text-indent: 20px;
+		border-radius:4px;
+	}
+	.ql-container img{
+		color: var(--gray-900);
+		background-color: var(--gray-300);
+		padding: 2px;
+	}
+	
+	.ql-snow a {
+		color: var(--blue-700);;
+	}
+	.ql-snow .ql-tooltip {
+		background-color: var(--gray-100);
+		border: 1px solid  var(--gray-600);
+		color: var(--gray-900);
+		border-radius: 5px;
+		box-shadow: initial;
+		z-index:2;
+	}
+	.ql-snow .ql-tooltip input[type="text"] {
+		color: var(--gray-900);
+		background-color: var(--gray-200);
+		border: none;
+		width: 350px;
+	}
+	.ql-snow .ql-tooltip a {
+		color: var(--gray-900);
+	}
+	.ql-snow .ql-tooltip[data-mode="link"]::before {
+		content: "Link:";
+	}
+	
+	.ql-mention-list-container {
+		background-color: var(--gray-200);
+		border-color: var(--gray-500);
+	}
+	.ql-mention-list-item.selected {
+		background-color: var(--gray-300) !important;
+	}
+	
+	/* mention de usuário */
+	.mention {
+		background-color: var(--gray-100) !important;
+		font-weight: normal !important;
+		padding: 5px 5px !important;
+		cursor: default !important;
+	}
+	
+	
+	/* box seletor visible */
+	.searchable .div-search-input {
+		background-color: var(--gray-100);
+		border-color: var(--gray-300);
+		border-radius: 4px;
+	}
+	.searchable .div-search-input a {
+		color: var(--gray-900);
+		font-size: 13px;
+	}
+	.searchable ul {
+		background-color: var(--gray-200);
+		border-color: var(--gray-500);
+		max-height: 300px;
+	}
+	.searchable ul li {
+		margin: 0 4px;
+		color: var(--gray-800);
+	}
+	.searchable ul li:hover {
+		background-color: var(--gray-400);
+		border-radius: 4px;
+	}
+	
+	/* drag file */
+	.dropzone-label {
+		background-color: var(--gray-200);
+	}
+	.dropzone-label i {
+		color: var(--gray-900) !important;
+	}
+	.dropzone-label .text-help-attachment span {
+		color: var(--gray-800);
+	}
+	
+	
+	
+	/* COMENTARIOS */
+	.timeline-audit {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	.timeline-audit .timeline-audit-entry {
+		margin-bottom: 50px;
+		padding-left: 40px;
+		padding-right: 40px;
+		width: 100%;
+		float: none;
+		clear: initial;
+	}
+	.timeline-audit .timeline-audit-entry .timeline-audit-entry-inner {
+		position: relative;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	.timeline-audit .timeline-audit-entry.has-timeline::before {
+		left: 100px;
+		bottom:-100px;
+		margin-left:0;
+		border-left: 4px dotted var(--gray-400);
+	}
+	.timeline-audit .timeline-audit-entry .timeline-audit-entry-inner .timeline-time {
+		position: absolute;
+		top: 40px;
+		left: initial !important;
+		right: 40px;
+		z-index:2;
+		color: var(--gray-900);
+		text-align: initial;
+		padding: 2px 10px;
+		max-width: initial;
+		background-color: var(--gray-50) !important;
+		border-radius: 15px;
+	}
+	
+	.timeline-audit .timeline-audit-entry .timeline-audit-entry-inner .timeline-time > span {
+		display: inline-block;
+		font-size:16px !important;
+	}
+	.timeline-audit .timeline-audit-entry .timeline-audit-entry-inner .timeline-time > span:first-child {
+		padding-right:5px;
+	}
+	
+	.timeline-audit .timeline-audit-entry .timeline-audit-entry-inner .timeline-audit-icon {
+		position: absolute;
+		top: 45px;
+		right: 205px;
+		z-index:2;
+		background-color: transparent !important;
+		border: initial !important;
+		margin: initial !important;
+		height: initial;
+		width: initial;
+		padding: initial;
+		display: none;
+	}
+	.lblTimeline {
+		margin: initial !important;
+		line-height: initial !important;
+		background-color: transparent !important;
+	}
+	.timeline-audit .timeline-audit-entry .timeline-audit-entry-inner .timeline-audit-icon .label {
+		border-radius: 20px !important;
+		font-size:10px;
+	}
+	.timeline-audit .timeline-audit-entry .timeline-audit-entry-inner .timeline-audit-label {
+		border-radius: initial !important;
+		border-radius: 20px !important;
+		background-color: var(--gray-200) !important;
+		border: none !important;
+		position: relative;
+		padding: 20px;
+		margin-left: initial;
+  	}
+	
+	.timeline-audit-label hr {
+		display: none
+	}
+	
+	.timeline-audit-label h2:first-of-type {
+		background-color: var(--gray-100);
+		border-radius: 10px;
+		padding:5px 20px;
+	}
+	
+	.timeline-audit-label h2 img {
+		width: 60px;
+		height: 60px;
+		margin-right:20px;
+		max-width: initial !important;
+		border:2px solid var(--gray-200);
+		padding:0
+	}
+	
+	.timeline-audit-label h2 span.name {
+		color: var(--gray-900);		
+	}
+	.timeline-audit-label h2 span.text {
+		margin-left: 20px;
+		color: var(--gray-900);
+		font-size: 11px !important;
+		font-weight: normal;
+	}
+	.timeline-audit-label h2 span.text .comments-team-visible {
+		padding-left: 20px;
+		color: var(--gray-900);
+	}
+	
+	.timeline-audit-label h2 span[ng-if="($history.can_edit && (item.can_edit_comment || item.can_edit_all_comments))"] {
+		float: none !important;
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		z-index:1;
+	}
+	.timeline-audit-label h2 span[ng-if="($history.can_edit && (item.can_edit_comment || item.can_edit_all_comments))"] i {
+		margin: 0!important;
+		font-size: 20px !important;
+		padding: 5px;
+		border-radius:50px;
+		color: var(--gray-900);
+	}
+	i.pli-pencil {
+		background-color: var(--blue-500);
+	}
+	i.pli-remove {
+		background-color: var(--gray-100);
+	}
+	i.pli-pencil::before {
+		 content:"\ee5a"
+	}
+	
+	i.pli-remove::before {
+		 content:"\ea77"
+	}
+	
+	
+	.file_size,
+	.file_size span,
+	.file_size span a.btn {
+		width:100%;
+		display:block;
+		font-size:14px;
+	}
+	.file_size span a.btn {
+		background-color: var(--blue-400);
+		border:none;
+	}
+	
+	
+	
+	/* REGISTROS DE ALTERAÇÕES */
+	.dl-horizontal {
+		padding: 15px 15px 0 15px;
+		margin:0;
+	}
+	
+	
+	.dl-horizontal dt {
+		max-width: initial !important;
+		width: 100% !important;
+		text-align: left !important;
+		display:block;
+		line-height: initial;
+		font-weight: 600;
+	}
+	
+	.dl-horizontal dd {
+		float:left;
+		width:100%;
+		margin-left: initial !important;
+		background-color: var(--gray-300);
+		color: var(--gray-900);
+		padding: 5px 10px;
+		border-radius: 6px;
+		margin-bottom: 15px !important;
+		
+	}
+	.dl-horizontal dd .label-warning {
+		background-color: var(--gray-500);
+	}
+	.dl-horizontal dd .label-primary {
+		background-color: var(--green-400) !important;
+		font-weight: 600;
+	}
+	.dl-horizontal dd p {
+		display:block;
+		width:100%;
+		word-break: break-word;
+		font-size: 15px;
+	}
+	.dl-horizontal dd p:not(:first-child) {
+		margin-top: 15px !important;
+		font-weight: 600;
+	}
+	.dl-horizontal dd .text-muted {
+		color: var(--gray-600);			
+		font-size: 12px;
+	}
+	
+	
+	/* MODAL */
+	.modal-content {
+		background-color: var(--gray-50)
+	}
+	.modal-header,
+	.modal-footer {
+		background-color: var(--gray-100) !important
+	}
+	.modal-body {
+		background-color: var(--gray-300) !important;
+		color: var(--gray-900)
+	}
+	.modal-body label {
+		color: var(--gray-900)
+	}
+	.container-iframe-workflow {
+		min-height: initial;
+		background: initial;
+	}
+	.modal-backdrop.in {
+		background-color: var(--gray-200)
+	}
+	
+	
+	
+	/*VEM DO JS*/
+	html {
+    	scroll-behavior: smooth;
+  	}
+	
+	#JStituloDoChamado {
+		float: left;
+		width: 100%;
+		margin-top: 12px;
+		padding: 5px 0;
+		text-align: center;
+		font-weight: bold;
+	}
+	.JSverificaStatus {
+		float: left;
+		width: 100%;
+		margin: 10px 0;
+		text-align: center;
+	}
+	
+	.label-status {
+		margin: 0 5px;
+		padding: 4px 40px;
+		color: var(--gray-900);
+		background-color: var(--gray-50);
+		border: 1px solid var(--gray-400);
+		text-transform: uppercase;
+		font-size: 16px;
+		text-align: center;
+		font-weight: bold;
+		border-radius: 6px;
+	}
+	
+	.label-status:before{
+		font-family: FontAwesome;
+		font-size: 16px;
+		padding-right: 12px;
+	}	
+	.label-status[title="A fazer"]:before{
+		content: "\f111";
+		color: var(--gray-300);
+	}
+	.label-status[title="Em análise"]:before,
+	.label-status[title="Em ajuste"]:before{
+		content: "\f111";
+		color: var(--gray-500);
+	}
+	.label-status[title="Em andamento"]:before,
+	.label-status[title="Validação do disparo"]:before,
+	.label-status[title="Disparo"]:before{
+		content: "\f111";
+		color: var(--green-700);
+	}
+	.label-status[title="Em aprovação"]:before,
+	.label-status[title="Aguardando área resolvedora"]:before{
+		content: "\f111";
+		color: var(--orange-700);
+	}
+	.label-status[title="Concluído"]:before{
+		content: "\f058";
+		color: var(--celery-700);
+	}
+	.label-status[title="Cancelado"]:before{
+		content: "\f2d3";
+		color: var(--red-600);
+	}
+	.label-status[title="amarelo"]:after {
+		margin-left: 12px;
+		content: " VENCE HOJE";
+		color: var(--orange-700);
+	}
+	.label-status[title="verde"]:after {
+		margin-left: 12px;
+		content: " NO PRAZO";
+		color: var(--green-700);
+	}
+	.label-status[title="vermelho"]:after {
+		margin-left: 12px;
+		content: " ATRASADO";
+		color: var(--red-700);
+	}
+	
+	.JSverificaHora {
+		color: #f00;
+		border:1px solid #f00;
+		background-color: #470303;
+		font-size: 15px;
+		padding: 10px 20px;
+		margin: 20px 0 !important;
+		border-radius:8px;
+	}
+	.JSbotaoAncora {
+		position: absolute;
+		bottom: 25px;
+		right: -50px;
+		padding: 5px;
+		width:50px;
+		text-align:center;
+		background-color: var(--gray-75);
+		font-size:25px;
+		line-height: 40px;
+		border-radius: 0 15px 15px 0 ;
+	}
+	.JSbotaoAncora a {
+		color: var(--gray-800);
+	}
+	
+	.ChamadoPaiNaoRelacionado{
+		border: 1px solid #f00 !important;
+		background-color: #470303 !important;
+		cursor: not-allowed;
+	}
+	/*VEM DO JS FIM*/
+	
+}
+
+@-moz-document url-prefix("https://plusoft-itsm.inpaas.com/static/finder/edit.html") {/* BUSCA */
+
+	/* BARRRA FILTRO */
+	.finder-edit .field-container {
+		background-color: var(--gray-200);
+		border: none;
+	}
+	.finder-edit .list-group-item {
+		background-color:  initial;
+		border: 1px solid var(--gray-500)
+	}
+	.finder-edit .list-group-item:hover {
+		background-color: var(--gray-100) !important;
+	}
+	.finder-edit .list-group-item:hover field {
+		color: var(--gray-900) !important;
+	}
+	.finder-edit .list-group-item field {
+		color: var(--gray-800);
+	}
+	.finder-edit .list-group-item.field-key {
+		background-color: var(--gray-200);
+		color: var(--gray-900);
+	}
+	.selected-field {
+		background-color: var(--gray-800) !important;
+	}
+	.selected-field field {
+		color: var(--gray-50) !important;
+	}
+	
+	
+	.finder-edit .well,
+	.finder-edit .rules-group-container {
+		background-color: var(--gray-200) !important;
+		border: 1px solid var(--gray-200) !important;
+	}
+	.group-container .group-data .group-data-row:nth-child(2n+1) {
+		background-color: var(--gray-75);
+	}
+	.group-container:last-child,
+	.group-container .group-data .group-data-row {
+		border: 1px solid var(--gray-200) !important;
+	}
+	.group-container .group-handle {
+		border-bottom: 1px solid var(--gray-500);
+	}
+	.group-container .group-handle .group-title:hover,
+	.group-container .group-handle .group-title::placeholder,
+	.group-container .group-handle .group-title{
+		background-color: var(--gray-300) !important;
+		color: var(--gray-900) !important;
+	}
+	.group-container .group-handle .group-title:focus {
+	  	background: var(--gray-50) !important;
+	  	border-color: var(--gray-500) !important;
+	}
+	
+	.finder-edit .well .form-control {
+		background-color: var(--gray-100);
+		color: var(--gray-500);
+	}
+}
+
+@-moz-document url-prefix("https://plusoft-itsm.inpaas.com/forms/dbextractor") {/* BUSCA AGENDADA */
+	.logo {
+		display:none
+	}
+	.form-background label {
+		color: var(--gray-900)
+	}
+	.form-background .form-group .form-control  {
+		background-color: var(--gray-400);
+		color: var(--gray-800);
+	}
+	.form-background .form-group .form-control::placeholder{
+		color: var(--gray-800);
+	}
+}
+
+@-moz-document url-prefix("https://plusoft-itsm.inpaas.com/forms-v2/bpm.worklog.forms.bpm_worklog") {/* REGISTRO DE HORA */
+
+	
+	
+}
