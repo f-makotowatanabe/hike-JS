@@ -1,17 +1,17 @@
 // ==UserScript==
 // @name         HIKE - Página Chamado
 // @description  Melhorias na interface do HIKE
-// @version      2.0
+// @version      2.0.1
 // @author       MakotoWatanabe
 // @include      https://plusoft-itsm.inpaas.com/forms-v2/bpmruntime.userflows.forms.bpm_workflow_*
 // @icon         https://hikeplatform.com/wp-content/themes/area-structure-1/assets/images/favicon.png
-// @downloadURL  https://raw.githubusercontent.com/f-makotowatanabe/hike-JS/refs/heads/main/script-hike-plusoft.js
-// @updateURL    https://raw.githubusercontent.com/f-makotowatanabe/hike-JS/refs/heads/main/script-hike-plusoft.js
+// @downloadURL  https://raw.githubusercontent.com/f-makotowatanabe/Hike-Plugins/refs/heads/main/script-hike-plusoft.js
+// @updateURL    https://raw.githubusercontent.com/f-makotowatanabe/Hike-Plugins/refs/heads/main/script-hike-plusoft.js
 // @grant        none
 // @run-at       document-idle
 // ==/UserScript==
 
-/*LAST UPDATE 01/09*/
+/*LAST UPDATE 12/09*/
 
 
 (function() {
@@ -43,6 +43,7 @@
 
 
 
+
         /* Adiciona os botões âncora
         // -------------------------------------------- */
         const observer = new MutationObserver(() => {
@@ -70,7 +71,7 @@
 
 
 
-        /* Conversor de ISO
+        /* Converte data no formato ISO
         // -------------------------------------------- */
         function converteParaIso(dataBrComHora) {
             const dataBr = dataBrComHora.split(' ')[0];
@@ -119,20 +120,6 @@
 
 
 
-        /* Verifica se o campo hora no chamado está preenchido
-        // -------------------------------------------- */
-        let HoraAlocada = '';
-        function verificaHoraAlocada() {
-            /* SE hora alocada for vazio
-            // -------------------------------------------- */
-            if (HoraAlocada === '') {
-                const popVerificaHoras = '<div class="JSverificaHora" role="alert">O campo <strong>Horas alocadas</strong> está vazio!</div>';
-                RenderizaFlutuante.insertAdjacentHTML("afterend", popVerificaHoras);
-            }
-        }
-
-
-
         /* Arruma o bootstrap
         // -------------------------------------------- */
         function ArrumaBootstrap() {
@@ -154,6 +141,21 @@
             });
         }
         ArrumaBootstrap();
+
+
+
+
+        /* Verifica se o campo hora no chamado está preenchido
+        // -------------------------------------------- */
+        let HoraAlocada = '';
+        function verificaHoraAlocada() {
+            /* SE hora alocada for vazio
+            // -------------------------------------------- */
+            if (HoraAlocada === '') {
+                const popVerificaHoras = '<div class="JSverificaHora" role="alert">O campo <strong>Horas alocadas</strong> está vazio!</div>';
+                RenderizaFlutuante.insertAdjacentHTML("afterend", popVerificaHoras);
+            }
+        }
 
         /* Verifica tipo do chamado
         // -------------------------------------------- */
